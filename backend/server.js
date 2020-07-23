@@ -4,7 +4,7 @@ const Router = require('koa-router');
 const router = new Router();
 const server = new Koa();
 
-require('./app/routes')(router);
+require('./routes')(router);
 
 
 server
