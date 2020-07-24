@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const logger = require('koa-morgan');
 const Router = require('koa-router');
-const cors = require('koa-cors');
+const cors = require('@koa/cors');
 const router = new Router();
 const server = new Koa();
 

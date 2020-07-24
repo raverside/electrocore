@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './css/Node.css';
 
-function Node() {
-    return (
-        <div className="electro-grid_node">
+class Node extends Component {
 
-        </div>
-    );
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="electro-grid_node">
+                {this.props.name}
+            </div>
+        );
+    };
+
 }
 
 export default Node;

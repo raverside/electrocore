@@ -1,10 +1,12 @@
 class Node {
 
-    constructor(name, upgrade_cost, profit){
+    constructor(name, initial_cost, upgrade_cost, profit){
         this.name = name;
+        this.initial_cost = initial_cost;
         this.upgrade_cost = upgrade_cost;
         this.profit = profit;
         this.level = 0;
+        this.auto = false;
     }
 
     setName(name) {
@@ -13,6 +15,14 @@ class Node {
 
     getName() {
         return this.name;
+    }
+
+    setInitialCost(initial_cost) {
+        this.initial_cost = initial_cost;
+    }
+
+    getInitialCost() {
+        return this.initial_cost;
     }
 
     setUpgradeCost(upgrade_cost) {
@@ -37,6 +47,14 @@ class Node {
 
     getLevel() {
         return this.level;
+    }
+
+    setAuto(auto) {
+        this.auto = auto;
+    }
+
+    getAuto() {
+        return this.auto;
     }
 
 }
