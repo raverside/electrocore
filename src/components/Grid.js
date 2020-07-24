@@ -15,12 +15,12 @@ class Grid extends Component {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
+            const json = await response.json();
+
+            this.setState({ nodes: json });
         } catch (error) {
             console.log(error);
         }
-        const json = await response.json();
-
-        this.setState({ nodes: json });
     }
 
     async componentDidMount() {
