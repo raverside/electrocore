@@ -1,0 +1,284 @@
+.electro-lights {
+    width:100%;
+    height:100%;
+    pointer-events: none;
+}
+
+.cyberstorage {
+    position: absolute;
+    left: 1023px;
+    top: 859px;
+    width: 194px;
+    height: 228px;
+}
+
+.cyberstorage .level {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+
+.cyberstorage .level_1 {
+    top: 42px;
+}
+
+.cyberstorage .level_2 {
+    top: 92px;
+    left:2px;
+}
+
+.cyberstorage .level_3 {
+    top: 136px;
+    left:2px;
+}
+
+.cyberstorage_leftpanel {
+    top: 40px;
+    left: -14px;
+    width: 119px;
+    height: 6px;
+    background: linear-gradient(45deg, #0cb16d, #3fa28d, #549a98, #08acc5, #00ffd5, #828aae, #8588b1, #ee65e9, #0cb16d);
+    background-size: 500%;
+    -webkit-transform: rotateY(52deg) rotateX(24deg) rotateZ(24deg);
+    transform: rotateY(52deg) rotateX(24deg) rotateZ(24deg);
+    filter: blur(2px);
+    position: absolute;
+    animation: glowing 20s linear infinite;
+}
+
+.cyberstorage_rightpanel {
+    top: 33px;
+    right: -19px;
+    width: 152px;
+    height: 3px;
+    background: linear-gradient(45deg, #0cb16d, #3fa28d, #549a98, #08acc5, #00ffd5, #828aae, #8588b1, #ee65e9, #0cb16d);
+    background-size: 500%;
+    transform: rotateY(142deg) rotateX(11deg) rotateZ(25deg);
+    filter: blur(2px);
+    position: absolute;
+    animation: glowing 20s linear infinite;
+}
+
+.cryptobank {
+    position: absolute;
+    left: 1087px;
+    top: 541px;
+    width: 194px;
+    height: 380px;
+}
+
+.cryptobank_panel {
+    width: 240px;
+    height: 40px;
+    background: linear-gradient(45deg, #0cb16d, #3fa28d, #549a98, #08acc5, #00ffd5, #828aae, #8588b1, #ee65e9, #0cb16d);
+    background-size: 500%;
+    filter: blur(2px);
+    position: absolute;
+    animation: glowing 20s linear infinite;
+}
+
+.cryptobank .level {
+    position: absolute;
+    height: 30px;
+    width: 100%;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+
+.cryptobank .level_1 .cryptobank_panel {
+    top: 187px;
+    left: -119px;
+    width: 262px;
+    height: 31px;
+    transform: rotateY(65deg) rotateX(0deg) rotateZ(90deg);
+}
+
+.cryptobank .level_1 .cryptobank_panel:before {
+    content: '';
+    position: absolute;
+    border-right: 7px solid #030917;
+    border-bottom: 32px solid #030917;
+    top: -3px;
+    left: -4px;
+    width: 0;
+    transform: rotate(19deg);
+}
+
+.cryptobank .level_2 .cryptobank_panel {
+    top: 188px;
+    left: -68px;
+    width: 230px;
+    height: 33px;
+    transform: rotateY(-59deg) rotateX(0deg) rotateZ(90deg);
+}
+
+.cryptobank .level_2 .cryptobank_panel:before {
+    content: '';
+    position: absolute;
+    border-right: 7px solid #030917;
+    border-bottom: 37px solid #030917;
+    top: -3px;
+    left: -5px;
+    width: 0;
+    transform: rotate(10deg);
+}
+
+.cryptobank .level_3 .cryptobank_panel {
+    top: 205px;
+    left: -32px;
+    width: 232px;
+    height: 33px;
+    transform: rotateY(-59deg) rotateX(0deg) rotateZ(90deg);
+}
+
+.cryptobank .level_3 .cryptobank_panel:before {
+    content: '';
+    position: absolute;
+    border-right: 7px solid #030917;
+    border-bottom: 46px solid #030917;
+    top: -14px;
+    left: -3px;
+    width: 0;
+    transform: rotate(6deg);
+}
+
+.cryptobank .level_4 .cryptobank_panel {
+    top: 211px;
+    left: -11px;
+    width: 248px;
+    height: 33px;
+    transform: rotateY(-59deg) rotateX(0deg) rotateZ(90deg);
+}
+
+.cryptobank .level_4 .cryptobank_panel:before {
+    content: '';
+    position: absolute;
+    border-right: 14px solid #030917;
+    border-bottom: 49px solid #030917;
+    top: 4px;
+    left: -6px;
+    width: 0;
+    transform: rotate(-20deg);
+}
+
+.cryptobank .level_5 .cryptobank_panel {
+    top: 200px;
+    left: 16px;
+    width: 264px;
+    height: 33px;
+    transform: rotateY(58deg) rotateX(0deg) rotateZ(90deg);
+}
+
+.cryptobank .level_5 .cryptobank_panel:before {
+    content: '';
+    position: absolute;
+    border-right: 13px solid #030917;
+    border-bottom: 33px solid #030917;
+    top: 4px;
+    left: -10px;
+    width: 0;
+    transform: rotate(-13deg);
+}
+
+.cryptobank .level_6 .cryptobank_panel {
+    top: 180px;
+    left: 51px;
+    height: 35px;
+    width: 264px;
+    transform: rotateY(59deg) rotateX(0deg) rotateZ(90deg);
+}
+.cryptobank .level_6 .cryptobank_panel:before {
+    content: '';
+    position: absolute;
+    border-right: 13px solid #030917;
+    border-bottom: 33px solid #030917;
+    top: 4px;
+    left: -10px;
+    width: 0;
+    transform: rotate(-13deg);
+}
+
+.powertower {
+    position: absolute;
+    left: 1330px;
+    top: 223px;
+    width: 135px;
+    height: 533px;
+}
+
+.powertower .level {
+    position: absolute;
+    height: 30px;
+    width: 100%;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+.powertower .level_1 {
+    bottom: 138px;
+    left: 6px;
+}
+.powertower .powertower_leftpanel {
+    width: 60px;
+    height: 108px;
+    position: absolute;
+    transform: rotateY(-45deg) rotateX(-21deg) rotateZ(21deg);
+}
+
+.powertower .powertower_rightpanel {
+    width: 60px;
+    height: 108px;
+    position: absolute;
+    right: 12px;
+    transform: rotateY(51deg) rotateX(163deg) rotateZ(21deg);
+}
+
+.powertower .powertower_leftpanel:before, .powertower .powertower_rightpanel:before {
+    content:'';
+    width:100%;
+    height:100%;
+    display:block;
+    position:absolute;
+    background: linear-gradient(45deg, #0cb16d, #3fa28d, #549a98, #08acc5, #00ffd5, #828aae, #8588b1, #ee65e9, #0cb16d);
+    background-size: 500%;
+    filter: blur(2px);
+    animation: glowing 20s linear infinite;
+}
+
+.powertower .powertower_leftpanel:after, .powertower .powertower_rightpanel:after {
+    content: '';
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    display: block;
+    position: absolute;
+    background-size: calc(25% + 5px);
+    background-repeat: repeat;
+    left: -5px; right: -5px;
+    top: -5px; bottom: -5px;
+}
+
+.powertower .powertower_leftpanel:after {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAHElEQVQYV2NkFjb/z4ADMIIk/749yYhNftBJAgAOJxlUIcr4awAAAABJRU5ErkJggg==);
+}
+.powertower .powertower_rightpanel:after {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAHElEQVQYV2Nk5lb6z4ADMIIk/369x4hNftBJAgD0sBk3yRkS1QAAAABJRU5ErkJggg==);
+}
+
+.powertower .level_2 {
+    top: 229px;
+    left: 5px;
+    transforM: scale(0.8);
+}
+
+.powertower .level_3 {
+    top: 125px;
+    left: 4px;
+    transforM: scale(0.6);
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 500% 0; }
+    100% { background-position: 0 0; }
+}

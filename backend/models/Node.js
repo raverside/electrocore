@@ -7,6 +7,7 @@ class Node {
         this.profit = profit;
         this.level = 0;
         this.auto = false;
+        this.bought = false;
     }
 
     setName(name) {
@@ -55,6 +56,14 @@ class Node {
 
     getAuto() {
         return this.auto;
+    }
+
+    setBought(bought) {
+        this.bought = bought;
+    }
+
+    getBought() {
+        return this.bought;
     }
 
 }

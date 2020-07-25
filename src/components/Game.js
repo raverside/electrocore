@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './css/Game.css';
 import Grid from './Grid';
+import Lights from './Lights';
 
 class Game extends Component {
 
@@ -8,6 +9,7 @@ class Game extends Component {
         return (
             <div className="game-wrapper">
                 <Grid />
+                <Lights />
             </div>
         );
     }

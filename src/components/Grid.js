@@ -30,13 +30,14 @@ class Grid extends Component {
     renderNode(node) {
         return (
             <Node
+                key={node.name}
                 name={node.name}
                 initial_cost={node.initial_cost}
                 upgrade_cost={node.upgrade_cost}
                 profit={node.profit}
                 level={node.level}
                 auto={node.auto}
-                key={node.name}
+                bought={node.bought}
             />
         );
     }
@@ -59,6 +60,7 @@ class Grid extends Component {
             </div>
         );
     }
+
 }
 
 export default Grid;

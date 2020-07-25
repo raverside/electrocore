@@ -3,10 +3,6 @@ import './css/Node.css';
 
 class Node extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="electro-grid_node">
