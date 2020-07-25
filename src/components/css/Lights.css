@@ -2,12 +2,15 @@
     width:100%;
     height:100%;
     pointer-events: none;
+    position: absolute;
+    top:0;
+    left:0;
 }
 
 .cyberstorage {
     position: absolute;
-    left: 1023px;
-    top: 859px;
+    left: 1016px;
+    top: 851px;
     width: 194px;
     height: 228px;
 }
@@ -63,8 +66,8 @@
 
 .cryptobank {
     position: absolute;
-    left: 1087px;
-    top: 541px;
+    left: 1078px;
+    top: 534px;
     width: 194px;
     height: 380px;
 }
@@ -202,8 +205,8 @@
 
 .powertower {
     position: absolute;
-    left: 1330px;
-    top: 223px;
+    left: 1322px;
+    top: 215px;
     width: 135px;
     height: 533px;
 }
