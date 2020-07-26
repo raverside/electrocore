@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
+import { MainContext } from "../Context";
 import './css/Game.css';
 import Grid from './Grid';
 import Lights from './Lights';
 
 class Game extends Component {
 
+    static contextType = MainContext;
+
     render() {
+        if (!this.context.isLoggedIn) {
+            return <Redirect to="/login" />;
+        }
+
         return (
             <div className="game-wrapper">
                 <Grid />

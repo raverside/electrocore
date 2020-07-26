@@ -1,3 +1,3 @@
 module.exports = (router) => {
-    router.use(require('./NodesRouter'));
+    router.use(require('./AuthRouter'), require('./NodesRouter'));
 };

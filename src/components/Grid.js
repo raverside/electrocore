@@ -9,6 +9,10 @@ class Grid extends Component {
         this.state = { nodes: [] };
     }
 
+    async componentDidMount() {
+        await this.getNodes();
+    }
+
     async getNodes() { // #TODO Rearrange this
         try {
             const response = await fetch("http://localhost:" + process.env.REACT_APP_NODE_PORT + "/getNodes");
@@ -21,10 +25,6 @@ class Grid extends Component {
         } catch (error) {
             console.log(error);
         }
-    }
-
-    async componentDidMount() {
-        await this.getNodes();
     }
 
     renderNode(node) {
