@@ -30,12 +30,15 @@ class Grid extends Component {
     renderNode(node) {
         return (
             <Node
-                key={node.name}
+                key={node.id}
                 name={node.name}
                 initial_cost={node.initial_cost}
                 upgrade_cost={node.upgrade_cost}
+                auto_cost={node.auto_cost}
                 profit={node.profit}
+                seconds={node.seconds}
                 level={node.level}
+                maxLevel={node.maxLevel}
                 auto={node.auto}
                 bought={node.bought}
             />

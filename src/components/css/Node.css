@@ -1,6 +1,6 @@
 .electro-grid_node {
-    padding: 20px;
-    width: 300px;
+    padding: 5px;
+    width: 350px;
     height: 230px;
     position: relative;
     background: #1f1f1f;
@@ -24,7 +24,7 @@
     box-shadow: none;
 }
 
-.electro-grid_node--interact {
+.electro-grid_node--buy, .electro-grid_node--run {
     padding: 0.5em 1.5em;
     border: none;
     background-color: transparent;
@@ -38,12 +38,16 @@
     outline:0;
 }
 
-.electro-grid_node--interact:hover {
+.electro-grid_node--run {
+    margin-top:10px;
+}
+
+.electro-grid_node--buy:hover, .electro-grid_node--run:hover {
     background-color: #c6c0c0;
     color: black;
 }
 
-.electro-grid_node--interact:before, .electro-grid_node--interact:after {
+.electro-grid_node--buy:before, .electro-grid_node--buy:after, .electro-grid_node--run:before, .electro-grid_node--run:after {
     content: '';
     display: block;
     position: absolute;
@@ -54,7 +58,7 @@
     border-radius: 2px;
 }
 
-.electro-grid_node--interact:hover:before, .electro-grid_node--interact:hover:after {
+.electro-grid_node--buy:hover:before, .electro-grid_node--buy:hover:after, .electro-grid_node--run:hover:before, .electro-grid_node--run:hover:after {
     border-bottom-color: #c6c0c0;
     border-right-color: #c6c0c0;
     border-top-color: #c6c0c0;
@@ -63,7 +67,7 @@
     height: 100%;
 }
 
-.electro-grid_node--interact:before {
+.electro-grid_node--buy:before, .electro-grid_node--run:before {
     top: 0;
     left: 0;
     border-bottom-color: transparent;
@@ -72,11 +76,98 @@
     border-left-color: #c6c0c0;
 }
 
-.electro-grid_node--interact:after {
+.electro-grid_node--buy:after, .electro-grid_node--run:after {
     bottom: 0;
     right: 0;
     border-top-color: transparent;
     border-left-color: transparent;
     border-bottom-color: #c6c0c0;
     border-right-color: #c6c0c0;
+}
+.electro-grid_node--run {
+    padding: 0.3em 0.7em;
+}
+.electro-grid_node--actions {
+    text-align:center;
+}
+.electro-grid_node--upgrade, .electro-grid_node--auto {
+    font-size: 25px;
+    font-family: 'Clip';
+    letter-spacing: 5px;
+    background: 0;
+    border: 0;
+    color: #c6c0c0;
+    position: relative;
+    padding: 0.7em 0.8em 0.3em;
+    margin: 0 6px;
+    cursor: pointer;
+    outline: 0;
+}
+.electro-grid_node--upgrade span, .electro-grid_node--auto span {
+    position: absolute;
+    color: #c6c0c0;
+    top: -9px;
+    left: 0;
+    right: 0;
+    font-size: 18px;
+    letter-spacing: 0;
+    font-family: 'Amatic SC', sans-serif;
+    transition:0.3s;
+}
+.electro-grid_node--upgrade:hover span, .electro-grid_node--auto:hover span {
+    top:-25px;
+}
+.electro-grid_node--upgrade:hover, .electro-grid_node--auto:hover {
+    background-color: #c6c0c0;
+    color: black;
+}
+
+.electro-grid_node--upgrade:before, .electro-grid_node--upgrade:after, .electro-grid_node--auto:before, .electro-grid_node--auto:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    border: 4px solid;
+    transition: all 0.6s ease;
+    border-radius: 2px;
+}
+
+.electro-grid_node--upgrade:hover:before, .electro-grid_node--upgrade:hover:after, .electro-grid_node--auto:hover:before, .electro-grid_node--auto:hover:after {
+    border-bottom-color: #c6c0c0;
+    border-right-color: #c6c0c0;
+    border-top-color: #c6c0c0;
+    border-left-color: #c6c0c0;
+    width: 100%;
+    height: 100%;
+}
+
+.electro-grid_node--upgrade:before, .electro-grid_node--auto:before {
+    top: 0;
+    left: 0;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-top-color: #c6c0c0;
+    border-left-color: #c6c0c0;
+}
+
+.electro-grid_node--upgrade:hover:before, .electro-grid_node--auto:hover:before {
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    border-left-color: transparent;
+}
+
+.electro-grid_node--upgrade:after, .electro-grid_node--auto:after {
+    top: 0;
+    right: 0;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-top-color: #c6c0c0;
+    border-right-color: #c6c0c0;
+}
+
+.electro-grid_node--upgrade:hover:after, .electro-grid_node--auto:hover:after {
+    top: -4px;
+    left: -4px;
 }
