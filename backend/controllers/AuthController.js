@@ -15,7 +15,7 @@ class AuthController {
 
             const newUser = await userInstance.save();
             ctx.status = 200;
-            ctx.body = newUser;
+            ctx.body = {username: newUser.username, currency: newUser.currency};
         } catch (err) {
             ctx.throw(422, {error: err});
         }
@@ -31,7 +31,7 @@ class AuthController {
 
                 if (comparison) {
                     ctx.status = 200;
-                    ctx.body = {username: user.username};
+                    ctx.body = {username: user.username, currency: user.currency};
                 } else {
                     return ctx.throw(403, "Error: Auth failed");
                 }

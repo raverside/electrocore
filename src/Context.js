@@ -47,6 +47,7 @@ class MainProvider extends Component {
                 ...state,
                 user: {
                     ...state.user,
+                    username: user.username,
                     currency: user.currency
                 },
                 isLoggedIn: true
