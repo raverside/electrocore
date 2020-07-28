@@ -24,7 +24,8 @@ class NodeService {
             maxLevel: 3,
             auto_cost: 500,
             profit: 50,
-            seconds: 3
+            seconds: 3,
+            level: 1
         };
 
         const powertower = {
@@ -35,7 +36,8 @@ class NodeService {
             maxLevel: 3,
             auto_cost: 2500,
             profit: 100,
-            seconds: 10
+            seconds: 10,
+            level: 1
         };
 
         const cryptobank = {
@@ -46,7 +48,8 @@ class NodeService {
             maxLevel: 6,
             auto_cost: 5000,
             profit: 1000,
-            seconds: 30
+            seconds: 30,
+            level: 1
         };
 
         nodes.push(cyberstorage, powertower, cryptobank);
