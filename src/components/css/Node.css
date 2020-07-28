@@ -15,6 +15,10 @@
     text-align:center;
 }
 
+.electro-grid_node-wrapper:hover {
+    z-index:1;
+}
+
 .electro-grid_node:hover {
     background: #323131;
     -webkit-transform: scale(1.1);

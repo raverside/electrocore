@@ -58,9 +58,9 @@ class UserService {
                     profits += node.profit * missedExecutions;
                 }
             });
-        }
 
-        await this.changeCurrency(profits, User);
+            await this.changeCurrency(profits, User);
+        }
 
         return profits;
     }
@@ -76,7 +76,9 @@ class UserService {
      * @returns {Promise<Object>}
      */
     static async changeCurrency(amount, User) {
-        return await User.updateOne({currency: Math.max(User.currency + amount, 0)}); // Math.max here keeps the amount positive
+        const updatedUser = await this.getUserById(User._id); // Update the user right before executing to make sure that the currency value is up to date
+
+        return await User.updateOne({currency: Math.max(updatedUser.currency + amount, 0)}); // Math.max here keeps the amount positive
     }
 
 }
