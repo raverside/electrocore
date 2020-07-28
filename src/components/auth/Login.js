@@ -14,7 +14,7 @@ class Login extends Component {
         this.login = this.login.bind(this);
     }
 
-    async login(e) { // #TODO Rearrange this
+    async login(e) {
         e.preventDefault();
         try {
             const bodyData = {
