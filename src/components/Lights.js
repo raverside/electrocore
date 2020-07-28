@@ -10,16 +10,17 @@ class Lights extends Component {
         const lights = [];
 
         if (this.props.bought) {
+            let i=1;
             switch (this.props.id) {
                 case 3:
-                    for (var i = 1; i <= this.props.level; i++) {
+                    for (i; i <= this.props.level; i++) {
                         lights.push(<div className={"level level_" + i} key={i}>
                             <div className={this.props.name + "_panel"}/>
                         </div>);
                     }
                     break;
                 default:
-                    for (var i = 1; i <= this.props.level; i++) {
+                    for (i; i <= this.props.level; i++) {
                         lights.push(<div className={"level level_" + i} key={i}>
                             <div className={this.props.name + "_leftpanel"}/>
                             <div className={this.props.name + "_rightpanel"}/>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {MainContext} from "../Context";
 import './css/Grid.css';
 import Node from './Node';
+import {toast} from "react-toastify";
 
 class Grid extends Component {
 
@@ -9,7 +10,7 @@ class Grid extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { nodes: [] };
+        this.state = { nodes: [], retry_nodes: 5 };
 
         this.getNodes = this.getNodes.bind(this);
     }
@@ -32,6 +33,12 @@ class Grid extends Component {
 
             this.setState({ nodes: json });
         } catch (error) {
+            this.setState({ retry_nodes: this.state.retry_nodes - 1});
+            if (this.state.retry_nodes > 0) {
+                this.getNodes();
+            } else {
+                toast.error('Can\'t get the Nodes. Try later ');
+            }
             console.log(error);
         }
     }

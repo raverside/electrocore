@@ -43,10 +43,11 @@ class AuthController {
                 if (comparison) {
                     const token = await AuthService.getToken(user._id);
                     const profits = await UserService.collectOfflineProfits(user);
+                    const newCurrency = user.currency + profits;
 
                     ctx.body = {
                         username: user.username,
-                        currency: user.currency,
+                        currency: newCurrency,
                         nodes: user.nodes,
                         token: token,
                         offline_profits: profits
