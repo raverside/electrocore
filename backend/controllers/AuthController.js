@@ -1,7 +1,8 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const UserService = require('../services/UserService');
 const saltRounds = 10;
-// const jwt = require("jsonwebtoken"); // might want to use this later to add Remember Me
 
 class AuthController {
 
@@ -15,8 +16,16 @@ class AuthController {
 
             const newUser = await userInstance.save();
             ctx.status = 200;
-            ctx.body = {username: newUser.username, currency: newUser.currency};
+            const token = jwt.sign(
+                { id: userInstance._id },
+                process.env.JWT_SECRET,
+                {
+                    expiresIn: "24h"
+                }
+            );
+            ctx.body = {username: newUser.username, currency: newUser.currency, nodes: newUser.nodes, token: token};
         } catch (err) {
+            console.log(err);
             ctx.throw(422, {error: err});
         }
     }
@@ -30,13 +39,24 @@ class AuthController {
                 const comparison = await bcrypt.compare(ctx.request.body.password, user.password);
 
                 if (comparison) {
+                    const token = jwt.sign(
+                        { id: user._id },
+                        process.env.JWT_SECRET,
+                        {
+                            expiresIn: "24h"
+                        }
+                    );
+
+                    const profits = await UserService.collectOfflineProfits(user);
+
                     ctx.status = 200;
-                    ctx.body = {username: user.username, currency: user.currency};
+                    ctx.body = {username: user.username, currency: user.currency, nodes: user.nodes, offline_profits: profits, token: token};
                 } else {
                     return ctx.throw(403, "Error: Auth failed");
                 }
             }
         } catch (err) {
+            console.log(err);
             ctx.throw(422, {error: err});
         }
     }

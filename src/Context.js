@@ -48,15 +48,44 @@ class MainProvider extends Component {
                 user: {
                     ...state.user,
                     username: user.username,
-                    currency: user.currency
+                    currency: user.currency,
+                    token: user.token
                 },
                 isLoggedIn: true
+            }));
+        },
+        changeCurrency: currency => {
+            this.setState(state => ({
+                ...state,
+                user: {
+                    ...state.user,
+                    currency: Math.max(state.user.currency + currency, 0),
+                }
             }));
         }
     };
 
     dataMethods = {
+        updateCurrency: async() => {
+            const response = await fetch("http://localhost:" + process.env.REACT_APP_NODE_PORT + "/getUser", {
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-access-token": this.state.user.token,
+                }
+            });
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            const json = await response.json();
 
+            this.setState(state => ({
+                ...state,
+                user: {
+                    ...state.user,
+                    currency: json.currency
+                }
+            }));
+        }
     };
 
     render() {

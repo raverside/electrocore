@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import {MainContext} from "../Context";
 import './css/Grid.css';
 import Node from './Node';
 
 class Grid extends Component {
 
+    static contextType = MainContext;
+
     constructor(props) {
         super(props);
         this.state = { nodes: [] };
+
+        this.getNodes = this.getNodes.bind(this);
     }
 
     async componentDidMount() {
@@ -15,7 +20,11 @@ class Grid extends Component {
 
     async getNodes() { // #TODO Rearrange this
         try {
-            const response = await fetch("http://localhost:" + process.env.REACT_APP_NODE_PORT + "/getNodes");
+            const response = await fetch("http://localhost:" + process.env.REACT_APP_NODE_PORT + "/getNodes", {
+                headers: {
+                    "x-access-token": this.context.user.token
+                }
+            });
             if (!response.ok) {
                 throw Error(response.statusText);
             }
@@ -31,6 +40,7 @@ class Grid extends Component {
         return (
             <Node
                 key={node.id}
+                id={node.id}
                 name={node.name}
                 initial_cost={node.initial_cost}
                 upgrade_cost={node.upgrade_cost}
@@ -40,6 +50,8 @@ class Grid extends Component {
                 level={node.level}
                 maxLevel={node.maxLevel}
                 auto={node.auto}
+                running_start={node.running_start}
+                running_until={node.running_until}
                 bought={node.bought}
             />
         );

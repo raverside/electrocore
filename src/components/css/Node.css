@@ -1,7 +1,7 @@
 .electro-grid_node {
     padding: 5px;
     width: 350px;
-    height: 230px;
+    height: 250px;
     position: relative;
     background: #1f1f1f;
     transform: scale(1);
@@ -39,7 +39,8 @@
 }
 
 .electro-grid_node--run {
-    margin-top:10px;
+    display: block;
+    margin: 20px auto 0;
 }
 
 .electro-grid_node--buy:hover, .electro-grid_node--run:hover {
@@ -170,4 +171,19 @@
 .electro-grid_node--upgrade:hover:after, .electro-grid_node--auto:hover:after {
     top: -4px;
     left: -4px;
+}
+
+.electro-grid_node--progress_bar {
+    position: absolute;
+    width: 0;
+    max-width:100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: #ffe6ff;
+    box-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #a99eff, -0.2rem 0.1rem 1rem #7b76c1, 0.2rem 0.1rem 1rem #959dd8, 0 -0.5rem 2rem #6e62b5, 0 0.5rem 3rem #dfdee8;
+    border-radius: 10px;
+    overflow: hidden;
+    filter: blur(1px);
 }

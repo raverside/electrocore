@@ -8,7 +8,7 @@ class Node {
         this.auto_cost = auto_cost;
         this.profit = profit;
         this.seconds = seconds;
-        this.level = 0;
+        this.level = 1;
         this.maxLevel = maxLevel;
         this.auto = false;
         this.bought = false;
