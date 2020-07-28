@@ -27,6 +27,24 @@ class NodeService {
         return nodes;
     }
 
+    static async getInitialCost(nodeId, User) {
+        const node = await User.nodes.find(node => node.id === nodeId);
+
+        return node.initial_cost;
+    }
+
+    static async getUpgradeCost(nodeId, User) {
+        const node = await User.nodes.find(node => node.id === nodeId);
+
+        return node.upgrade_cost;
+    }
+
+    static async getAutoCost(nodeId, User) {
+        const node = await User.nodes.find(node => node.id === nodeId);
+
+        return node.auto_cost;
+    }
+
     static async unlockNode(nodeId, User) {
         try {
             const nodeIndex = User.nodes.findIndex(node => node.id === nodeId);

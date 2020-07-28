@@ -1,4 +1,12 @@
+const User = require('../models/User');
+
 class UserService {
+
+    static async getUserById() {
+        const User = await User.findOne({ _id: ctx.decode.id });
+
+        return User;
+    }
 
     static async collectOfflineProfits(User) {
         let profits = 0;

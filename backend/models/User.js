@@ -28,4 +28,8 @@ const UserSchema = new Schema({
     }
 });
 
+UserSchema.methods.hasEnoughCurrency = function(amount) {
+  return this.currency >= amount;
+};
+
 module.exports = mongoose.model('User', UserSchema);
