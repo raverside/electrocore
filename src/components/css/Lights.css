@@ -24,7 +24,8 @@
 }
 
 .cyberstorage .level_1 {
-    top: 42px;
+    top: 136px;
+    left:2px;
 }
 
 .cyberstorage .level_2 {
@@ -33,8 +34,7 @@
 }
 
 .cyberstorage .level_3 {
-    top: 136px;
-    left:2px;
+    top: 42px;
 }
 
 .cyberstorage_leftpanel {

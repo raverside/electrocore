@@ -18,3 +18,18 @@ body {
     letter-spacing: 3px;
     font-size:25px;
 }
+
+.Toastify__toast--success {
+    background-color: #1f1f1f !important;
+    font-family: 'Amatic SC', sans-serif !important;
+    font-size: 30px !important;
+    padding: 20px !important;
+}
+
+.Toastify__toast--success span {
+    font-family: Clip !important;
+    color: #ffe6ff !important;
+    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #a99eff, -0.2rem 0.1rem 1rem #7b76c1, 0.2rem 0.1rem 1rem #959dd8, 0 -0.5rem 2rem #6e62b5, 0 0.5rem 3rem #dfdee8;
+    letter-spacing: 5px;
+    font-size: 32px !important;
+}

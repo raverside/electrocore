@@ -12,10 +12,10 @@ class NodeService {
         const cyberstorage = new Node(1, 'cyberstorage', 50, 100, 3, 500, 50, 3);
         nodes.push(cyberstorage);
 
-        const powertower = new Node(2, 'powertower', 2500, 3000, 3, 1000, 100, 10);
+        const powertower = new Node(2, 'powertower', 2500, 1000, 3, 2500, 100, 10);
         nodes.push(powertower);
 
-        const cryptobank = new Node(3, 'cryptobank', 5000, 7000, 6, 5000, 300, 30);
+        const cryptobank = new Node(3, 'cryptobank', 5000, 3000, 6, 5000, 1000, 30);
         nodes.push(cryptobank);
 
         try {

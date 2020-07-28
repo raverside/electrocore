@@ -70,8 +70,8 @@ class Grid extends Component {
 
     render() {
         return (
-            <div className="electro-grid">
-                {this.renderNodes()}
+            <div className="electro-grid-wrapper">
+                <div className="electro-grid">{this.renderNodes()}</div>
             </div>
         );
     }

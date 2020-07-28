@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { Redirect } from "react-router-dom";
 import { MainContext } from "../Context";
-import './css/Game.css';
 import User from './User';
 import Grid from './Grid';
-import Lights from './Lights';
+import {toast} from "react-toastify";
+import './css/Game.css';
 
 class Game extends Component {
 
     static contextType = MainContext;
+
+    componentDidMount() {
+        if (this.context.isLoggedIn && this.context.user.offline_profits > 0) {
+            toast.success(<p>The city keeps shining even when you sleep. You earned <span>¥{this.context.user.offline_profits} </span> while you were away</p>, {autoClose: 10000});
+        }
+    }
 
     render() {
         if (!this.context.isLoggedIn) {
@@ -19,7 +25,6 @@ class Game extends Component {
             <div className="game-wrapper">
                 <User />
                 <Grid />
-                <Lights />
             </div>
         );
     }

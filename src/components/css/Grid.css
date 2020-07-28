@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    position: fixed;
     top:0;
     left:0;right:0;
     max-width:1050px;

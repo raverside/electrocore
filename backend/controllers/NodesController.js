@@ -47,9 +47,11 @@ class NodesController {
         const nodeId = ctx.request.body.id;
 
         const node = await NodeService.executeNode(nodeId, user);
-        setTimeout(async function(){
-            await UserService.changeCurrency(node.profit, user);
-        }, new Date(node.running_until).getTime() - new Date().getTime());
+        if (node) {
+            setTimeout(async function () {
+                await UserService.changeCurrency(node.profit, user);
+            }, new Date(node.running_until).getTime() - new Date().getTime());
+        }
 
         ctx.body = node;
     }

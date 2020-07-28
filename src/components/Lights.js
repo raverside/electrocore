@@ -1,58 +1,38 @@
 import React, { Component } from 'react';
 import './css/Lights.css';
+import {MainContext} from "../Context";
 
 class Lights extends Component {
 
+    static contextType = MainContext;
+
     render() {
+        const lights = [];
+
+        if (this.props.bought) {
+            switch (this.props.id) {
+                case 3:
+                    for (var i = 1; i <= this.props.level; i++) {
+                        lights.push(<div className={"level level_" + i} key={i}>
+                            <div className={this.props.name + "_panel"}/>
+                        </div>);
+                    }
+                    break;
+                default:
+                    for (var i = 1; i <= this.props.level; i++) {
+                        lights.push(<div className={"level level_" + i} key={i}>
+                            <div className={this.props.name + "_leftpanel"}/>
+                            <div className={this.props.name + "_rightpanel"}/>
+                        </div>);
+                    }
+                    break;
+            }
+        }
+
         return (
             <div className="electro-lights">
-                <div className="powertower">
-                    <div className="level level_1">
-                        <div className="powertower_leftpanel" />
-                        <div className="powertower_rightpanel" />
-                    </div>
-                    <div className="level level_2">
-                        <div className="powertower_leftpanel" />
-                        <div className="powertower_rightpanel" />
-                    </div>
-                    <div className="level level_3">
-                        <div className="powertower_leftpanel" />
-                        <div className="powertower_rightpanel" />
-                    </div>
-                </div>
-                <div className="cryptobank">
-                    <div className="level level_1">
-                        <div className="cryptobank_panel" />
-                    </div>
-                    <div className="level level_2">
-                        <div className="cryptobank_panel" />
-                    </div>
-                    <div className="level level_3">
-                        <div className="cryptobank_panel" />
-                    </div>
-                    <div className="level level_4">
-                        <div className="cryptobank_panel" />
-                    </div>
-                    <div className="level level_5">
-                        <div className="cryptobank_panel" />
-                    </div>
-                    <div className="level level_6">
-                        <div className="cryptobank_panel" />
-                    </div>
-                </div>
-                <div className="cyberstorage">
-                    <div className="level level_1">
-                        <div className="cyberstorage_leftpanel" />
-                        <div className="cyberstorage_rightpanel" />
-                    </div>
-                    <div className="level level_2">
-                        <div className="cyberstorage_leftpanel" />
-                        <div className="cyberstorage_rightpanel" />
-                    </div>
-                    <div className="level level_3">
-                        <div className="cyberstorage_leftpanel" />
-                        <div className="cyberstorage_rightpanel" />
-                    </div>
+                <div className={this.props.name}>
+                    {lights}
                 </div>
             </div>
         );

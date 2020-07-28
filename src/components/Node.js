@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './css/Node.css';
 import {MainContext} from "../Context";
 import { toast } from 'react-toastify';
+import Lights from "./Lights";
 
 class Node extends Component {
 
@@ -19,7 +20,8 @@ class Node extends Component {
             running_start: this.props.running_start,
             running_until: this.props.running_until,
             node_progress: 0,
-            node_progress_seconds: ''
+            node_progress_seconds: '',
+            retry_node: 10
         };
 
         this.buyNode = this.buyNode.bind(this);
@@ -44,7 +46,7 @@ class Node extends Component {
             this.setState({node_progress: nodeProgress, node_progress_seconds: 'all linear '+secondsLeft+'s'}, function(){
                 setTimeout(function () {
                     $this.setState({node_progress: 100});
-                }, 50);
+                }, 300);
             });
 
             setTimeout(function(){
@@ -92,7 +94,7 @@ class Node extends Component {
 
     async upgradeNode() {
         if (this.state.level < this.props.maxLevel) {
-            if (this.props.upgrade_cost > this.context.user.currency) {
+            if (this.state.upgrade_cost > this.context.user.currency) {
                 toast.error('Not enough ¥llumination');
             } else {
                 try {
@@ -188,13 +190,19 @@ class Node extends Component {
                 this.updateProgressBar(false);
                 setTimeout(function(){
                     methods.changeCurrency(json.profit);
-                }, executionLength);
+                    this.setState({node_progress_seconds: '', node_progress: 0});
+                }.bind(this), executionLength);
             } catch (err) {
                 console.log(err);
-                toast.error('Couldn\'t run this node. Try again');
+                this.setState({ retry_node: this.state.retry_node - 1});
+                if (this.state.retry_node > 0) {
+                    this.executeNode();
+                } else {
+                    toast.error('Can\'t execute ' + this.state.name);
+                }
             }
         } else {
-            toast.error('This node is already running or automated');
+            toast.error('This node is already running');
         }
     }
 
@@ -215,10 +223,18 @@ class Node extends Component {
         }
 
         return (
-            <div className="electro-grid_node">
-                <p className="electro-grid_node--name">{this.props.name}{this.state.bought && <span> [{(this.state.level === this.props.maxLevel) ? 'max' : this.state.level}]</span>}</p>
-                <div className="electro-grid_node--actions">{nodeActions}</div>
-                <div className="electro-grid_node--progress_bar" style={{ width: this.state.node_progress+'%', transition: this.state.node_progress_seconds }} />
+            <div className="electro-grid_node-wrapper">
+                <div className="electro-grid_node">
+                    <p className="electro-grid_node--name">{this.props.name}{this.state.bought && <span> [{(this.state.level === this.props.maxLevel) ? 'max' : this.state.level}]</span>}</p>
+                    <div className="electro-grid_node--actions">{nodeActions}</div>
+                    <div className="electro-grid_node--progress_bar" style={{ width: this.state.node_progress+'%', transition: this.state.node_progress_seconds }} />
+                </div>
+                <Lights
+                    level={this.state.level}
+                    id={this.props.id}
+                    name={this.props.name}
+                    bought={this.state.bought}
+                />
             </div>
         );
     };
