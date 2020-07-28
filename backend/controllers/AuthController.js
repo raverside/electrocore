@@ -1,63 +1,63 @@
-const User = require("../models/User");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const AuthService = require('../services/AuthService');
 const UserService = require('../services/UserService');
-const saltRounds = 10;
 
 class AuthController {
 
+    /**
+     * Create a new user and authenticate them
+     *
+     * @param ctx
+     * @returns {Promise<Object>}
+     */
     static async register(ctx) {
         try {
-            const hash = await bcrypt.hash(ctx.request.body.password, saltRounds);
-            const userInstance = new User({
-                username: ctx.request.body.username,
-                password: hash
-            });
+            const hash = await AuthService.hashPassword(ctx.request.body.password);
+            const newUser = await UserService.register(ctx.request.body.username, hash);
+            const token = await AuthService.getToken(newUser._id);
 
-            const newUser = await userInstance.save();
-            ctx.status = 200;
-            const token = jwt.sign(
-                { id: userInstance._id },
-                process.env.JWT_SECRET,
-                {
-                    expiresIn: "24h"
-                }
-            );
-            ctx.body = {username: newUser.username, currency: newUser.currency, nodes: newUser.nodes, token: token};
+            ctx.body = {
+                username: newUser.username,
+                currency: newUser.currency,
+                nodes: newUser.nodes,
+                token: token
+            };
         } catch (err) {
-            console.log(err);
-            ctx.throw(422, {error: err});
+            ctx.throw(403, {error: err});
         }
     }
 
+    /**
+     * Authenticate the user
+     *
+     * @param ctx
+     * @returns {Promise<Object>}
+     */
     static async login(ctx) {
         try {
-            const user = await User.findOne({username: ctx.request.body.username});
+            const user = await UserService.getUserByName(ctx.request.body.username);
             if (!user) {
-                ctx.throw(500, "Wrong Credentials");
+                ctx.throw(500, "User with that name doesn't exist");
             } else {
-                const comparison = await bcrypt.compare(ctx.request.body.password, user.password);
+                const comparison = await AuthService.comparePassword(ctx.request.body.password, user.password);
 
                 if (comparison) {
-                    const token = jwt.sign(
-                        { id: user._id },
-                        process.env.JWT_SECRET,
-                        {
-                            expiresIn: "24h"
-                        }
-                    );
-
+                    const token = await AuthService.getToken(user._id);
                     const profits = await UserService.collectOfflineProfits(user);
 
-                    ctx.status = 200;
-                    ctx.body = {username: user.username, currency: user.currency, nodes: user.nodes, offline_profits: profits, token: token};
+                    ctx.body = {
+                        username: user.username,
+                        currency: user.currency,
+                        nodes: user.nodes,
+                        token: token,
+                        offline_profits: profits
+                    };
                 } else {
-                    return ctx.throw(403, "Error: Auth failed");
+                    ctx.throw(403, "Wrong password");
                 }
             }
         } catch (err) {
             console.log(err);
-            ctx.throw(422, {error: err});
+            ctx.throw(403, {error: err});
         }
     }
 

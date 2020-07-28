@@ -10,7 +10,9 @@ class NodesController {
      * @returns {Promise<Array>}
      */
     static async getNodes(ctx) {
-        const user = await UserService.getUserById(ctx.decode.id);
+        const userId = ctx.decode.id;
+
+        const user = await UserService.getUserById(userId);
         const nodes = await NodeService.createNodes(user);
 
         ctx.body = nodes;
@@ -23,17 +25,19 @@ class NodesController {
      * @returns {Promise<Object>}
      */
     static async buyNode(ctx) {
-        const user = await UserService.getUserById(ctx.decode.id);
+        const userId = ctx.decode.id;
         const nodeId = ctx.request.body.id;
+
+        const user = await UserService.getUserById(userId);
         const nodeCost = await NodeService.getInitialCost(nodeId, user);
 
-        if (user.hasEnoughCurrency(nodeCost)) {
+        if (!user.hasEnoughCurrency(nodeCost)) {
+            ctx.throw(422, {error: 'Not enough currency'});
+        } else {
             const node = await NodeService.unlockNode(nodeId, user);
-            await UserService.changeCurrency(-node.initial_cost, user);
+            const updatedCurrency = await UserService.changeCurrency(-nodeCost, user);
 
             ctx.body = node;
-        } else {
-            ctx.throw(422, {error: 'Not enough currency'});
         }
     }
 
@@ -44,17 +48,19 @@ class NodesController {
      * @returns {Promise<Object>}
      */
     static async upgradeNode(ctx) {
-        const user = await UserService.getUserById(ctx.decode.id);
+        const userId = ctx.decode.id;
         const nodeId = ctx.request.body.id;
-        const nodeCost = await NodeService.getUpgradeCost(nodeId, user);
 
-        if (user.hasEnoughCurrency(nodeCost)) {
+        const user = await UserService.getUserById(userId);
+        const nodeCost = await NodeService.getTotalUpgradeCost(nodeId, user);
+
+        if (!user.hasEnoughCurrency(nodeCost)) {
+            ctx.throw(422, {error: 'Not enough currency'});
+        } else {
             const node = await NodeService.upgradeNode(nodeId, user);
-            await UserService.changeCurrency(-node.upgrade_cost * node.level, user);
+            const updatedCurrency = await UserService.changeCurrency(-nodeCost, user);
 
             ctx.body = node;
-        } else {
-            ctx.throw(422, {error: 'Not enough currency'});
         }
     }
 
@@ -65,17 +71,19 @@ class NodesController {
      * @returns {Promise<Object>}
      */
     static async autoNode(ctx) {
-        const user = await UserService.getUserById(ctx.decode.id);
+        const userId = ctx.decode.id;
         const nodeId = ctx.request.body.id;
+
+        const user = await UserService.getUserById(userId);
         const nodeCost = await NodeService.getAutoCost(nodeId, user);
 
-        if (user.hasEnoughCurrency(nodeCost)) {
+        if (!user.hasEnoughCurrency(nodeCost)) {
+            ctx.throw(422, {error: 'Not enough currency'});
+        } else {
             const node = await NodeService.autoNode(nodeId, user);
-            await UserService.changeCurrency(-node.auto_cost, user);
+            const updatedCurrency = await UserService.changeCurrency(-nodeCost, user);
 
             ctx.body = node;
-        } else {
-            ctx.throw(422, {error: 'Not enough currency'});
         }
     }
 
@@ -86,11 +94,14 @@ class NodesController {
      * @returns {Promise<Object>}
      */
     static async executeNode(ctx) {
-        const user = await UserService.getUserById(ctx.decode.id);
+        const userId = ctx.decode.id;
         const nodeId = ctx.request.body.id;
 
+        const user = await UserService.getUserById(userId);
         const node = await NodeService.executeNode(nodeId, user);
+
         if (node) {
+            // I decided to go with timeout here but a more stable solution would involve using cron instead. See Readme for more details
             setTimeout(async function () {
                 await UserService.changeCurrency(node.profit, user);
             }, new Date(node.running_until).getTime() - new Date().getTime());

@@ -1,11 +1,18 @@
-const jwt = require("jsonwebtoken");
+const AuthService = require('../services/AuthService');
 
+/**
+ * Validate the token on each protected request
+ *
+ * @param ctx
+ * @param next
+ * @returns {Promise<void>}
+ */
 const checkToken = async (ctx, next) => {
     const token = ctx.get('x-access-token') || ctx.get('authorization');
     if(token) {
         try {
-            const decode = await jwt.verify(token, process.env.JWT_SECRET);
-            ctx.decode = decode;
+            ctx.decode = AuthService.decodeToken(token);
+
             await next();
         } catch (err){
             console.log(err);

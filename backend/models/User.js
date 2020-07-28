@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Node = require('../models/Node');
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
@@ -18,10 +19,7 @@ const UserSchema = new Schema({
         min: 0,
         default: 50
     },
-    nodes: {
-        type : Array,
-        default : []
-    },
+    nodes: [Node],
     offline_profits: {
         type: Number,
         default: 0

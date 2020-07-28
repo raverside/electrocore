@@ -1,13 +1,17 @@
-const User = require('../models/User');
+const UserService = require('../services/UserService');
 
-class NodesController {
+class UsersController {
 
+    /**
+     * Return currently authenticated user
+     *
+     * @param ctx
+     * @returns {Promise<Object>}
+     */
     static async getUser(ctx) {
-        const user = await User.findOne({ _id: ctx.decode.id });
-
-        ctx.body = user;
+        ctx.body = await UserService.getUserById(ctx.decode.id);
     }
 
 }
 
-module.exports = NodesController;
+module.exports = UsersController;

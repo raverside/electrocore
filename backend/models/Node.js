@@ -1,103 +1,75 @@
-class Node {
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-    constructor(id, name, initial_cost, upgrade_cost, maxLevel, auto_cost, profit, seconds){
-        this.id = id;
-        this.name = name;
-        this.initial_cost = initial_cost;
-        this.upgrade_cost = upgrade_cost;
-        this.auto_cost = auto_cost;
-        this.profit = profit;
-        this.seconds = seconds;
-        this.level = 1;
-        this.maxLevel = maxLevel;
-        this.auto = false;
-        this.bought = false;
+/**
+ * Child Schema for User
+ * @type {*|Mongoose.Schema}
+ */
+const NodeSchema = new Schema({
+    id: {
+        type: Number,
+        required: true,
+        unique: true,
+        index: true
+    },
+    name: {
+        type: String,
+        required: true,
+        min: 1
+    },
+    initial_cost: {
+        type: Number,
+        required: true,
+        min: 1
+    },
+    upgrade_cost: {
+        type: Number,
+        required: true,
+        min: 1
+    },
+    auto_cost: {
+        type: Number,
+        required: true,
+        min: 1
+    },
+    profit: {
+        type: Number,
+        required: true,
+        min: 1
+    },
+    seconds: {
+        type: Number,
+        required: true,
+        min: 1
+    },
+    level: {
+        type: Number,
+        required: true,
+        default: 1,
+        min: 1
+    },
+    maxLevel: {
+        type: Number,
+        required: true,
+        default: 1,
+        min: 1
+    },
+    auto: {
+        type: Boolean,
+        default: false
+    },
+    bought: {
+        type: Boolean,
+        default: false
+    },
+    running_start: {
+        type: Number,
+        required: false
+    },
+    running_until: {
+        type: Number,
+        required: false
     }
+});
 
-    getId() {
-        return this.id;
-    }
-
-    setName(name) {
-        this.name = name;
-    }
-
-    getName() {
-        return this.name;
-    }
-
-    setInitialCost(initial_cost) {
-        this.initial_cost = initial_cost;
-    }
-
-    getInitialCost() {
-        return this.initial_cost;
-    }
-
-    setUpgradeCost(upgrade_cost) {
-        this.upgrade_cost = upgrade_cost;
-    }
-
-    getUpgradeCost() {
-        return this.upgrade_cost;
-    }
-
-    setAutoCost(auto_cost) {
-        this.auto_cost = auto_cost;
-    }
-
-    getAutoCost() {
-        return this.auto_cost;
-    }
-
-    setProfit(profit) {
-        this.profit = profit;
-    }
-
-    getProfit() {
-        return this.profit;
-    }
-
-    setSeconds(seconds) {
-        this.seconds = seconds;
-    }
-
-    getSeconds() {
-        return this.seconds;
-    }
-
-    setLevel(level) {
-        this.level = level;
-    }
-
-    getLevel() {
-        return this.level;
-    }
-
-    setMaxLevel(maxLevel) {
-        this.maxLevel = maxLevel;
-    }
-
-    getMaxLevel() {
-        return this.maxLevel;
-    }
-
-    setAuto(auto) {
-        this.auto = auto;
-    }
-
-    getAuto() {
-        return this.auto;
-    }
-
-    setBought(bought) {
-        this.bought = bought;
-    }
-
-    getBought() {
-        return this.bought;
-    }
-
-}
-
-module.exports = Node;
+module.exports = NodeSchema;
