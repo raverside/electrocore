@@ -9,7 +9,7 @@ In order to unlock and upgrade the Nodes you'll have to earn some currency which
 
 If you close the game and come back some time later you'll see how much currency you made while you were gone (if you had some autorunning Nodes that is).
 
-Hosted version is available [here](http://electrocore.ga/).
+Hosted version is available [here](http://electrocore.ga/) (It's hosted on a very slow server so keep that in mind).
 
 I spent 6 days total working on this entirely on my own. 
 
