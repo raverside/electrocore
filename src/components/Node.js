@@ -166,6 +166,7 @@ class Node extends Component {
     async executeNode() {
         if (!this.state.running_until || new Date(this.state.running_until) < new Date()) {
             try {
+
                 const bodyData = {
                     id: this.props.id
                 };
@@ -180,24 +181,37 @@ class Node extends Component {
                 if (!response.ok) {
                     throw Error(response.statusText);
                 }
-                const json = await response.json();
-                this.setState({ running_start: json.running_start, running_until: json.running_until });
 
-                const executionLength = Math.max(new Date(json.running_until) - new Date(), 0);
-                const methods = this.context.methods;
-                this.updateProgressBar(false);
-                setTimeout(function(){
-                    methods.changeCurrency(json.profit);
-                    this.setState({node_progress_seconds: '', node_progress: 0});
-                }.bind(this), executionLength);
+                const json = await response.json();
+
+                if (new Date(json.running_until) > new Date()) {
+                    this.setState({running_start: json.running_start, running_until: json.running_until});
+
+                    const executionLength = Math.max(new Date(json.running_until) - new Date(), 0);
+                    const methods = this.context.methods;
+
+                    this.updateProgressBar(false);
+
+                    setTimeout(function () {
+                        methods.changeCurrency(json.profit);
+                        this.setState({node_progress_seconds: '', node_progress: 0});
+                    }.bind(this), executionLength);
+                } else {
+                    throw Error('Already finished execution');
+                }
+
             } catch (err) {
-                console.log(err);
+
+                // Retry executing the node if there was an error
                 this.setState({ retry_node: this.state.retry_node - 1});
                 if (this.state.retry_node > 0) {
-                    this.executeNode();
+                    setTimeout(function(){
+                        this.executeNode();
+                    }.bind(this), 300);
                 } else {
-                    toast.error('Can\'t execute ' + this.state.name);
+                    toast.error('Can\'t execute the node');
                 }
+
             }
         } else {
             toast.error('This node is already running');
