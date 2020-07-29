@@ -48,8 +48,8 @@ class Node extends Component {
             });
 
             setTimeout(function(){
-                $this.setState({node_progress_seconds: '', node_progress: 0});
                 if (isFirstRender) {
+                    $this.setState({node_progress_seconds: '', node_progress: 0});
                     $this.context.dataMethods.updateCurrency();
                 }
                 $this.autoExecuteNode();
@@ -185,7 +185,8 @@ class Node extends Component {
                 const json = await response.json();
 
                 if (new Date(json.running_until) > new Date()) {
-                    this.setState({running_start: json.running_start, running_until: json.running_until});
+                    this.setState({ retry_node: 10}); // reset retry counter
+                    this.setState({ running_start: json.running_start, running_until: json.running_until });
 
                     const executionLength = Math.max(new Date(json.running_until) - new Date(), 0);
                     const methods = this.context.methods;
