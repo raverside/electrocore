@@ -21,7 +21,7 @@ class Grid extends Component {
 
     async getNodes() { // #TODO Rearrange this
         try {
-            const response = await fetch("http://localhost:" + process.env.REACT_APP_NODE_PORT + "/getNodes", {
+            const response = await fetch(process.env.REACT_APP_DOMAIN + ":" + process.env.REACT_APP_NODE_PORT + "/getNodes", {
                 headers: {
                     "x-access-token": this.context.user.token
                 }

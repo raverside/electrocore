@@ -68,7 +68,7 @@ class MainProvider extends Component {
 
     dataMethods = {
         updateCurrency: async() => {
-            const response = await fetch("http://localhost:" + process.env.REACT_APP_NODE_PORT + "/getUser", {
+            const response = await fetch(process.env.REACT_APP_DOMAIN + ":" + process.env.REACT_APP_NODE_PORT + "/getUser", {
                 headers: {
                     "Content-Type": "application/json",
                     "x-access-token": this.state.user.token,

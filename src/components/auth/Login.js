@@ -21,7 +21,7 @@ class Login extends Component {
                 username: this.context.auth.username,
                 password: this.context.auth.password
             };
-            const response = await fetch("http://localhost:" + process.env.REACT_APP_NODE_PORT + "/login", {
+            const response = await fetch(process.env.REACT_APP_DOMAIN + ":" + process.env.REACT_APP_NODE_PORT + "/login", {
                 method: 'post',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(bodyData)

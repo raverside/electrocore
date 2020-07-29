@@ -68,7 +68,7 @@ class Node extends Component {
                     const bodyData = {
                         id: this.props.id
                     };
-                    const response = await fetch("http://localhost:" + process.env.REACT_APP_NODE_PORT + "/buyNode", {
+                    const response = await fetch(process.env.REACT_APP_DOMAIN + ":" + process.env.REACT_APP_NODE_PORT + "/buyNode", {
                         method: 'post',
                         headers: {
                             "Content-Type": "application/json",
@@ -101,7 +101,7 @@ class Node extends Component {
                     const bodyData = {
                         id: this.props.id
                     };
-                    const response = await fetch("http://localhost:" + process.env.REACT_APP_NODE_PORT + "/upgradeNode", {
+                    const response = await fetch(process.env.REACT_APP_DOMAIN + ":" + process.env.REACT_APP_NODE_PORT + "/upgradeNode", {
                         method: 'post',
                         headers: {
                             "Content-Type": "application/json",
@@ -134,7 +134,7 @@ class Node extends Component {
                     const bodyData = {
                         id: this.props.id
                     };
-                    const response = await fetch("http://localhost:" + process.env.REACT_APP_NODE_PORT + "/autoNode", {
+                    const response = await fetch(process.env.REACT_APP_DOMAIN + ":" + process.env.REACT_APP_NODE_PORT + "/autoNode", {
                         method: 'post',
                         headers: {
                             "Content-Type": "application/json",
@@ -171,7 +171,7 @@ class Node extends Component {
                 const bodyData = {
                     id: this.props.id
                 };
-                const response = await fetch("http://localhost:" + process.env.REACT_APP_NODE_PORT + "/executeNode", {
+                const response = await fetch(process.env.REACT_APP_DOMAIN + ":" + process.env.REACT_APP_NODE_PORT + "/executeNode", {
                     method: 'post',
                     headers: {
                         "Content-Type": "application/json",
