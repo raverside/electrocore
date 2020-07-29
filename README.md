@@ -9,7 +9,7 @@ In order to unlock and upgrade the Nodes you'll have to earn some currency which
 
 If you close the game and come back some time later you'll see how much currency you made while you were gone (if you had some autorunning Nodes that is).
 
-Hosted version is available [here]().
+Hosted version is available [here](http://electrocore.ga/).
 
 I spent 6 days total working on this entirely on my own. 
 
@@ -35,6 +35,16 @@ Most of my database experience lies in MySQL and I wanted to diversify that. I h
 #### Tech summary
 
 Overall this stack is somewhat new to me but I think I did a decent job with it considering the amount of work and the timeframe. I like how the backend turned out and I like the way the frontend looks (but not written).
+
+
+## Set it up
+
+1. Clone the repository
+2. Create an .env file (use .env.template for reference)
+3. `$ npm install`
+4. `$ npm start`
+5. Open a separate terminal and cd to `backend`
+6. `$ npm run server`
 
 
 ## Trade-offs 
