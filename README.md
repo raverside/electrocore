@@ -43,7 +43,7 @@ Overall this stack is somewhat new to me but I think I did a decent job with it 
 2. Create an .env file (use .env.template for reference)
 3. `$ npm install`
 4. `$ npm start`
-5. Open a separate terminal and cd to `backend`
+5. Open a separate terminal
 6. `$ npm run server`
 
 
