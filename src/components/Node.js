@@ -50,7 +50,9 @@ class Node extends Component {
 
             const $this = this;
             this.setState({node_progress: nodeProgress, node_progress_seconds: 'all linear '+secondsLeft+'s'}, function(){
-                $this.setState({node_progress: 100});
+                setTimeout(function() { // need to give it some time to render to trigger the animation
+                    $this.setState({node_progress: 100});
+                }, 50);
             });
 
             setTimeout(function(){
