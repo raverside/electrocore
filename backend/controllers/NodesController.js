@@ -105,9 +105,12 @@ class NodesController {
             setTimeout(async function () {
                 await UserService.changeCurrency(node.profit, user);
             }, new Date(node.running_until).getTime() - new Date().getTime());
+
+            ctx.body = node;
+        } else {
+            ctx.throw(403, {error: 'Node is still running'});
         }
 
-        ctx.body = node;
     }
 
 }

@@ -44,9 +44,7 @@ class Node extends Component {
 
             const $this = this;
             this.setState({node_progress: nodeProgress, node_progress_seconds: 'all linear '+secondsLeft+'s'}, function(){
-                setTimeout(function () {
-                    $this.setState({node_progress: 100});
-                }, 300);
+                $this.setState({node_progress: 100});
             });
 
             setTimeout(function(){
