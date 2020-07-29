@@ -55,7 +55,7 @@ class NodeService {
         nodes.push(cyberstorage, powertower, cryptobank);
 
         try {
-            await User.updateOne({nodes: nodes});
+            await User.updateOne({ id: User._id },{nodes: nodes});
         } catch(err) {
             console.log(err);
         }
