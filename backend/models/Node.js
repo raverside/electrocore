@@ -9,7 +9,6 @@ const NodeSchema = new Schema({
     id: {
         type: Number,
         required: true,
-        unique: true,
         index: true
     },
     name: {

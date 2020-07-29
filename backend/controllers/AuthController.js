@@ -22,6 +22,7 @@ class AuthController {
                 token: token
             };
         } catch (err) {
+            console.log(err);
             ctx.throw(403, {error: err});
         }
     }
