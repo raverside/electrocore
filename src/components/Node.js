@@ -32,15 +32,21 @@ class Node extends Component {
     }
 
     componentDidMount() {
-        this.updateProgressBar(true);
+        this.updateProgressBar(true, false);
         this.autoExecuteNode();
     }
 
-    updateProgressBar(isFirstRender) {
+    updateProgressBar(isFirstRender, executionLength) {
         const now = new Date();
         if (new Date(this.state.running_until) > now) {
-            const secondsLeft = Math.ceil((new Date(this.state.running_until) - new Date()) / 1000);
-            const nodeProgress = 100 - Math.min(Math.max(Math.round((secondsLeft / this.props.seconds) * 100), 0), 100);
+
+            let secondsLeft = Math.ceil((new Date(this.state.running_until) - new Date()) / 1000);
+            let nodeProgress = 100 - Math.min(Math.max(Math.round((secondsLeft / this.props.seconds) * 100), 0), 100);
+
+            if (executionLength) {
+                secondsLeft = executionLength / 1000;
+                nodeProgress = 0;
+            }
 
             const $this = this;
             this.setState({node_progress: nodeProgress, node_progress_seconds: 'all linear '+secondsLeft+'s'}, function(){
@@ -51,8 +57,8 @@ class Node extends Component {
                 if (isFirstRender) {
                     $this.setState({node_progress_seconds: '', node_progress: 0});
                     $this.context.dataMethods.updateCurrency();
+                    $this.autoExecuteNode();
                 }
-                $this.autoExecuteNode();
             }, secondsLeft * 1000);
         }
     }
@@ -191,11 +197,12 @@ class Node extends Component {
                     const executionLength = Math.max(new Date(json.running_until) - new Date(), 0);
                     const methods = this.context.methods;
 
-                    this.updateProgressBar(false);
+                    this.updateProgressBar(false, executionLength);
 
                     setTimeout(function () {
                         methods.changeCurrency(json.profit);
                         this.setState({node_progress_seconds: '', node_progress: 0});
+                        this.autoExecuteNode();
                     }.bind(this), executionLength);
                 } else {
                     throw Error('Already finished execution');
