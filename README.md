@@ -11,6 +11,8 @@ If you close the game and come back some time later you'll see how much currency
 
 Hosted version is available [here](http://electrocore.ga/) (It's hosted on a very slow server so keep that in mind).
 
+Only tested on 4k resolution, I'll make the layout responsive when I have some spare time.
+
 I spent 6 days total working on this entirely on my own. 
 
 
