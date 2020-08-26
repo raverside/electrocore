@@ -1,7 +1,7 @@
 ![Electrocore image](https://github.com/raverside/electrocore/blob/master/public/electrocore_promo.jpg?raw=true)
 
 ## About
-Electrocore is an idle web game (meaning you [don't have to actively play it](https://www.youtube.com/watch?v=tFZmf4yvJ8M) in order to progress.
+Electrocore is an idle web game (meaning you [don't have to actively play it](https://www.youtube.com/watch?v=tFZmf4yvJ8M) in order to progress).
 
 The goal of the game is to illuminate the city by unlocking the Nodes and upgrading them.
 
