@@ -9,8 +9,6 @@ In order to unlock and upgrade the Nodes you'll have to earn some currency which
 
 If you close the game and come back some time later you'll see how much currency you made while you were gone (if you had some autorunning Nodes that is).
 
-Hosted version is available [here](http://electrocore.ga/) (It's hosted on a very slow server so keep that in mind).
-
 Only tested on 4k resolution, I'll make the layout responsive when I have some spare time.
 
 I spent 6 days total working on this entirely on my own. 
@@ -26,7 +24,7 @@ Overall I'd say that Koa is more enjoyable to work with and I intend to keep usi
 [React](https://reactjs.org/)
 
 This is the first time I used React to build something from scratch. I can't say I liked it as much as I expected I would but perhaps I just need to let it grow on me.
-I'm sure I misused/misunderstood some things but in my defense I expected it would be a bit easier to get a hang of since it's supposed to be a library and not a framework (which I believe is a lie). If I could go back in time I wouldn't go for React unless I had twice as much time available so I could make it right. I might refactor this later when I get a bit more comfortable in React environment. For now it's spaghetti.
+I'm sure I misused/misunderstood some things. I might refactor this later when I get a bit more comfortable in React environment. For now it's spaghetti.
 
 
 [Mongoose](https://mongoosejs.com/)
